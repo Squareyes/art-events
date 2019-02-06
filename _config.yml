@@ -1,0 +1,30 @@
+---
+title:
+timezone: Australia/Melbourne
+collections:
+  posts:
+    title: Posts
+    output: true
+  uploads:
+    title: Uploads
+    output: true
+author:
+email:
+description:
+
+permalink: pretty
+exclude:
+- Gemfile.lock
+- Gemfile
+- README*
+- node_modules
+- ".gitignore"
+- assets/scripts/src
+- yarn.lock
+- ".git"
+- package.json
+- package-lock.json
+facebook_url:
+insta_url:
+whitelist:
+- jekyll-redirect-from
