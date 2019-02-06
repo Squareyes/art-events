@@ -1,9 +1,71 @@
 {% include head.html %}
 {% include header.html %}
 
+    {% comment %}
+      Work out current day and a week ahead from that
+    {% endcomment %}
+
+    {% assign day_zero_sec = 'now' | date: '%s' | plus: 0 %}
+    {% assign day_zero = day_zero_sec | date: '%A %e, %b' %}
+
+    {% assign day_one = day_zero_sec | plus: '86400' | date: '%A %e, %b' %}
+    {% assign day_two = day_zero_sec | plus: '172800' | date: '%A %e, %b' %}
+    {% assign day_three = day_zero_sec | plus: '259200' | date: '%A %e, %b' %}
+    {% assign day_four = day_zero_sec | plus: '345600' | date: '%A %e, %b' %}
+    {% assign day_five = day_zero_sec | plus: '432000' | date: '%A %e, %b' %}
+    {% assign day_six = day_zero_sec | plus: '518400' | date: '%A %e, %b' %}
+    {% assign day_seven = day_zero_sec | plus: '604800' | date: '%A %e, %b' %}
+    
     <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        {{ content }}
+        <h1>Art Events</h1>
+
+        {% for post in site.posts %}
+
+          {% comment %}
+            Check post is within date range and group posts together
+          {% endcomment %}
+
+          {% assign dateStart = post.event_d | date: '%s' %}
+          {% assign nowTimestamp = 'now' | date: '%s' %}
+
+          {% comment %} difference in seconds {% endcomment %}
+          {% assign diffSeconds = dateStart | minus: nowTimestamp %}
+
+          {% comment %} difference in days {% endcomment %}
+          {% assign diffDays = diffSeconds | divided_by: 3600 | divided_by: 24 %}
+
+          {% if diffDays <= 7 and diffDays >= -1 %}
+
+            {% assign eventDay = dateStart | date: '%A %e, %b' %}
+
+          {% endif %}
+
+          <h2>{{ day_zero }}</h2>
+          {% if eventDay == day_zero %}
+            {{ post.title }}
+          {% endif %}
+
+          <h2>{{ day_one }}</h2>
+          {% if eventDay == day_one %}
+            {{ post.title }}
+          {% endif %}
+          <!--
+          {{ post.title }}
+          {{ post.event_d }}
+          {{ post.location }}
+          {{ post.category }}
+          {{ post.start_t }}
+          {{ post.more_info }}
+          {{ post.more_info }} -->
+
+        {% endfor %}
+        <!-- <h2>{{ day_three }}</h2>
+        <h2>{{ day_four }}</h2>
+        <h2>{{ day_five }}</h2>
+        <h2>{{ day_six }}</h2>
+        <h2>{{ day_seven }}</h2> -->
+
       </div>
     </main>
 
