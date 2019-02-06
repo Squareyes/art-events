@@ -8,10 +8,9 @@ collections:
   uploads:
     title: Uploads
     output: true
-author:
-email:
-description:
-
+author: 
+email: 
+description: 
 permalink: pretty
 exclude:
 - Gemfile.lock
@@ -24,7 +23,7 @@ exclude:
 - ".git"
 - package.json
 - package-lock.json
-facebook_url:
-insta_url:
+facebook_url: 
+insta_url: 
 whitelist:
 - jekyll-redirect-from
