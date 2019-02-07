@@ -15,7 +15,7 @@
     {% assign day_five = day_zero_sec | plus: '432000' | date: '%A %e, %b' %}
     {% assign day_six = day_zero_sec | plus: '518400' | date: '%A %e, %b' %}
     {% assign day_seven = day_zero_sec | plus: '604800' | date: '%A %e, %b' %}
-    
+
     <main class="page-content" aria-label="Content">
       <div class="wrapper">
         <h1>Art Events</h1>
@@ -41,15 +41,7 @@
 
           {% endif %}
 
-          <h2>{{ day_zero }}</h2>
-          {% if eventDay == day_zero %}
-            {{ post.title }}
-          {% endif %}
 
-          <h2>{{ day_one }}</h2>
-          {% if eventDay == day_one %}
-            {{ post.title }}
-          {% endif %}
           <!--
           {{ post.title }}
           {{ post.event_d }}
@@ -60,13 +52,15 @@
           {{ post.more_info }} -->
 
         {% endfor %}
-        <!-- <h2>{{ day_three }}</h2>
-        <h2>{{ day_four }}</h2>
-        <h2>{{ day_five }}</h2>
-        <h2>{{ day_six }}</h2>
-        <h2>{{ day_seven }}</h2> -->
+
+        <div id="page-data" data-view-react-page="{{ site.posts | jsonify | escape }}"></div>
+        <div id="react-test"></div>
 
       </div>
     </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.2.5/polyfill.js" integrity="sha256-de4erznIozbU4acWYIEp6BsfvDkdztG9L60q7x0gy1Y=" crossorigin="anonymous"></script>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
 
 {% include footer.html %}
