@@ -2,6 +2,9 @@ const webpack = require('webpack');
 
 module.exports = {
   mode: 'production',
+  entry: {
+    main: ["./_assets/scripts/main.js", "./_assets/styles/main.scss" ]
+  },
   module: {
     rules: [
       {

@@ -2,7 +2,9 @@ const LiveReloadPlugin = require('webpack-livereload-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: "./_assets/scripts/main.js",
+  entry: {
+    main: ["./_assets/scripts/main.js", "./_assets/styles/main.scss" ]
+  },
   module: {
     rules: [
       {
