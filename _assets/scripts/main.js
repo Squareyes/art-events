@@ -1,9 +1,13 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+const Component = React.Component;
+
 document.addEventListener('DOMContentLoaded', function() {
 
   console.log('site by squareyes.info 👓');
 
   /*============================================================================
-    Article Filter
+    Event List
   ============================================================================*/
 
   const projectAttr = document.getElementById('page-data');
@@ -27,11 +31,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     render() {
       return (
-        <div className="EventList">
-          <div className="event-list">
-            { this.state.list.map(item => item).map(item =>
-              <Event item={item} />
-            )}
+        <div>
+          <div className="EventList">
+            <div className="event-list">
+              { this.state.list.map(item => item).map(item =>
+                <Event item={item} />
+              )}
+            </div>
           </div>
         </div>
       );
