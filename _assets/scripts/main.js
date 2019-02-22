@@ -1,32 +1,74 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-const Component = React.Component;
+import React from 'react'
+import ReactDOM from 'react-dom'
+const Component = React.Component
 
-import moment from 'moment';
+import moment from 'moment'
 
 document.addEventListener('DOMContentLoaded', function() {
 
-  console.log('site by squareyes.info 👓');
+  console.log('site by squareyes.info 👓')
 
   /*============================================================================
     Event List
   ============================================================================*/
 
-  const projectAttr = document.getElementById('page-data');
-  const projectData = projectAttr.dataset.viewReactPage;
-  let list = JSON.parse(projectData);
+  const projectAttr = document.getElementById('page-data')
+  const projectData = projectAttr.dataset.viewReactPage
+  let list = JSON.parse(projectData)
 
-  const dayOne = moment()
+  // Get one week and create arrays
+  const dayZero = moment().endOf('day')
+  const dayZeroArray = []
+
+  const dayOne = moment().add(1, 'days').endOf('day')
   const dayOneArray = []
 
+  const dayTwo = moment().add(2, 'days').endOf('day')
+  const dayTwoArray = []
+
+  const dayThree = moment().add(3, 'days').endOf('day')
+  const dayThreeArray = []
+
+  const dayFour = moment().add(4, 'days').endOf('day')
+  const dayFourArray = []
+
+  const dayFive = moment().add(5, 'days').endOf('day')
+  const dayFiveArray = []
+
+  const daySix = moment().add(6, 'days').endOf('day')
+  const daySixArray = []
+
+  const daySeven = moment().add(7, 'days').endOf('day')
+  const daySevenArray = []
+
   list.map(event => {
-    event.date = moment(event.event_d, 'D-MM-YYYY')
+    event.date = moment(event.event_d, 'D-MM-YYYY').endOf('day')
+        
+    if (moment(event.date).diff(dayZero, 'day') === 0) {
+      dayZeroArray.push(event)
+    }
     if (moment(event.date).diff(dayOne, 'day') === 0) {
       dayOneArray.push(event)
     }
+    if (moment(event.date).diff(dayTwo, 'day') === 0) {
+      dayTwoArray.push(event)
+    }
+    if (moment(event.date).diff(dayThree, 'day') === 0) {
+      dayThreeArray.push(event)
+    }
+    if (moment(event.date).diff(dayFour, 'day') === 0) {
+      dayFourArray.push(event)
+    }
+    if (moment(event.date).diff(dayFive, 'day') === 0) {
+      dayFiveArray.push(event)
+    }
+    if (moment(event.date).diff(daySix, 'day') === 0) {
+      daySixArray.push(event)
+    }
+    if (moment(event.date).diff(daySeven, 'day') === 0) {
+      daySevenArray.push(event)
+    }
   })
-
-  console.log(dayOneArray)
 
 
   /**
@@ -34,11 +76,25 @@ document.addEventListener('DOMContentLoaded', function() {
    */
   class EventList extends Component {
     constructor(props) {
-      super(props);
+      super(props)
 
       this.state = {
-        list: list
-      };
+        dayZero,
+        dayOne,
+        dayTwo,
+        dayFour,
+        dayFive,
+        daySix,
+        daySeven,
+        dayZeroArray,
+        dayOneArray,
+        dayTwoArray,
+        dayThreeArray,
+        dayFourArray,
+        dayFiveArray,
+        daySixArray,
+        daySevenArray,
+      }
     }
 
     render() {
@@ -46,15 +102,51 @@ document.addEventListener('DOMContentLoaded', function() {
         <div>
           <div className="EventList">
             <div className="event-list">
-              { this.state.list.map(item => item).map(item =>
+              <h2>{moment(this.state.dayZero).format('dddd, D MMM')}</h2>
+              { this.state.dayZeroArray.map(item => item).map(item =>
+                <Event item={item} />
+              )}
+
+              <h2>{moment(this.state.dayOne).format('dddd, D MMM')}</h2>
+              { this.state.dayOneArray.map(item => item).map(item =>
+                <Event item={item} />
+              )}
+
+              <h2>{moment(this.state.dayTwo).format('dddd, D MMM')}</h2>
+              { this.state.dayTwoArray.map(item => item).map(item =>
+                <Event item={item} />
+              )}
+
+              <h2>{moment(this.state.dayThree).format('dddd, D MMM')}</h2>
+              { this.state.dayThreeArray.map(item => item).map(item =>
+                <Event item={item} />
+              )}
+
+              <h2>{moment(this.state.dayFour).format('dddd, D MMM')}</h2>
+              { this.state.dayFourArray.map(item => item).map(item =>
+                <Event item={item} />
+              )}
+
+              <h2>{moment(this.state.dayFive).format('dddd, D MMM')}</h2>
+              { this.state.dayFiveArray.map(item => item).map(item =>
+                <Event item={item} />
+              )}
+
+              <h2>{moment(this.state.daySix).format('dddd, D MMM')}</h2>
+              { this.state.daySixArray.map(item => item).map(item =>
+                <Event item={item} />
+              )}
+
+              <h2>{moment(this.state.daySeven).format('dddd, D MMM')}</h2>
+              { this.state.daySevenArray.map(item => item).map(item =>
                 <Event item={item} />
               )}
             </div>
           </div>
         </div>
-      );
+      )
     }
-  };
+  }
 
 
   /**
@@ -62,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
    */
   class Event extends Component {
     render() {
-      const item = this.props.item;
+      const item = this.props.item
 
       return (
         <div className="event" key={item.title}>
@@ -89,5 +181,5 @@ document.addEventListener('DOMContentLoaded', function() {
   ReactDOM.render(
     <EventList />,
     document.getElementById('react-test')
-  );
-});
+  )
+})
