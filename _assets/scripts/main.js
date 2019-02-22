@@ -16,9 +16,18 @@ document.addEventListener('DOMContentLoaded', function() {
   const projectData = projectAttr.dataset.viewReactPage;
   let list = JSON.parse(projectData);
 
-  const testDate = moment(list[0].date, 'YYYY-MM-DD HH:mm Z')
+  const dayOne = moment()
+  const dayOneArray = []
 
-  console.log(testDate.format('dddd, MMM D'))
+  list.map(event => {
+    event.date = moment(event.date, 'YYYY-MM-DD HH:mm Z')
+    if (moment(event.date).isSame(dayOne, 'day')) {
+      dayOneArray.push(event)
+      console.log('suup')
+    }
+  })
+
+  console.log(list, dayOneArray)
 
 
   /**
