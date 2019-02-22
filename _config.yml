@@ -23,6 +23,8 @@ exclude:
 - ".git"
 - package.json
 - package-lock.json
+- webpack.dev.js
+- webpack.prod.js
 facebook_url: 
 insta_url: 
 whitelist:

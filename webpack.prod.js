@@ -25,7 +25,8 @@ module.exports = {
     ]
   },
   output: {
-    filename: 'crossword.bundle.js'
+    filename: 'main.js',
+    path: __dirname + '/assets/scripts'
   },
   plugins: [
     new webpack.DefinePlugin({
