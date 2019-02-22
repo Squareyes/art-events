@@ -20,14 +20,13 @@ document.addEventListener('DOMContentLoaded', function() {
   const dayOneArray = []
 
   list.map(event => {
-    event.date = moment(event.date, 'YYYY-MM-DD HH:mm Z')
-    if (moment(event.date).isSame(dayOne, 'day')) {
+    event.date = moment(event.event_d, 'D-MM-YYYY')
+    if (moment(event.date).diff(dayOne, 'day') === 0) {
       dayOneArray.push(event)
-      console.log('suup')
     }
   })
 
-  console.log(list, dayOneArray)
+  console.log(dayOneArray)
 
 
   /**
