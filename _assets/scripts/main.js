@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 const Component = React.Component;
 
+import moment from 'moment';
+
 document.addEventListener('DOMContentLoaded', function() {
 
   console.log('site by squareyes.info 👓');
@@ -14,7 +16,9 @@ document.addEventListener('DOMContentLoaded', function() {
   const projectData = projectAttr.dataset.viewReactPage;
   let list = JSON.parse(projectData);
 
-  console.log(list)
+  const testDate = moment(list[0].date, 'YYYY-MM-DD HH:mm Z')
+
+  console.log(testDate.format('dddd, MMM D'))
 
 
   /**
